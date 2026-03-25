@@ -1,0 +1,22 @@
+body {
+    font-family: Arial;
+    background: #f0f2f5;
+}
+
+.header {
+    background: #333;
+    color: white;
+    padding: 10px;
+}
+
+.grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+}
