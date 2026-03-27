@@ -1,30 +1,31 @@
-<h1>Borang Tempahan</h1>
+<?php include 'includes/header.php'; ?>
+<?php include 'includes/navbar.php'; ?>
 
-<form method="POST">
-    <div class="grid">
-    <?php foreach ($data as $produk): ?>
-        <div class="card">
-            <img src="gambar/<?= $produk['gambar'] ?>" width="150">
-            <h3><?= $produk['nama'] ?></h3>
+<h1 class="page-title">Borang Tempahan</h1>
 
-            <?php foreach ($produk['harga'] as $saiz => $harga): ?>
-                <div>
-                    <?= ucfirst($saiz) ?> (RM <?= $harga ?>)
-                    <input type="number"
-                        name="tempahan[<?= $produk['id'] ?>][<?= $saiz ?>]"
-                        class="qty-input"
-                        data-price="<?= $harga ?>"
-                        value="0" min="0">
-                </div>
-            <?php endforeach; ?>
+<form action="process/tempah_process.php" method="POST">
+<div class="product-grid">
 
-        </div>
-    <?php endforeach; ?>
+<?php foreach ($data as $produk): ?>
+<div class="product-card">
+    <img src="gambar/<?= $produk['gambar'] ?>" class="product-image">
+    <h3><?= $produk['nama'] ?></h3>
+
+    <?php foreach ($produk['harga'] as $saiz=>$harga): ?>
+    <div>
+        <?= $saiz ?> (RM <?= $harga ?>)
+        <input type="number" name="tempahan[<?= $produk['id'] ?>][<?= $saiz ?>]" value="0" class="qty-input" data-price="<?= $harga ?>">
     </div>
+    <?php endforeach; ?>
 
-    <h3 id="total-price">RM 0.00</h3>
+</div>
+<?php endforeach; ?>
 
-    <input type="text" name="nama_pelanggan" placeholder="Nama" required>
+</div>
 
-    <button type="submit">Teruskan</button>
+<input type="text" name="nama_pelanggan" placeholder="Nama" required>
+<button type="submit">Submit</button>
+
 </form>
+
+<?php include 'includes/footer.php'; ?>

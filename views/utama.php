@@ -1,10 +1,12 @@
-<h1>Selamat Datang</h1>
+<?php include 'includes/header.php'; ?>
+<?php include 'includes/navbar.php'; ?>
 
-<div class="grid">
+<h1 class="page-title">Selamat Datang</h1>
+
+<div class="gallery-row">
 <?php foreach ($data as $produk): ?>
-    <div class="card">
-        <img src="gambar/<?= $produk['gambar'] ?>" width="150">
-        <p><?= $produk['nama'] ?></p>
-    </div>
+<img src="gambar/<?= $produk['gambar'] ?>" class="gallery-thumb">
 <?php endforeach; ?>
 </div>
+
+<?php include 'includes/footer.php'; ?>

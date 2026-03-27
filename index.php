@@ -1,28 +1,23 @@
 <?php
 session_start();
 
-require_once "config/data.php";
-
 $menu = $_GET['menu'] ?? 'utama';
 
-include "views/header.php";
+include 'data/produk.php';
 
 switch ($menu) {
     case 'utama':
-        include "views/utama.php";
+        include 'view/utama.php';
         break;
 
     case 'tempah':
-        include "process/tempahan.php";
-        include "views/tempah.php";
+        include 'view/tempah.php';
         break;
 
     case 'invois':
-        include "views/invois.php";
+        include 'view/invois.php';
         break;
 
     default:
-        echo "<h1>Page not found</h1>";
+        include 'view/error.php';
 }
-
-include "views/footer.php";

@@ -1,39 +1,30 @@
 <?php
 if (!isset($_SESSION['invois_data'])) {
-    echo "Tiada invois.";
-    return;
+    header("Location: index.php?menu=tempah");
+    exit();
 }
 
-$inv = $_SESSION['invois_data'];
+$data = $_SESSION['invois_data'];
+
+include 'includes/header.php';
+include 'includes/navbar.php';
 ?>
 
 <h1>Invois</h1>
 
-<p>Nama: <?= $inv['nama'] ?></p>
-<p>No: <?= $inv['no_invois'] ?></p>
-<p>Tarikh: <?= $inv['tarikh'] ?></p>
+<table>
+<tr><th>Produk</th><th>Qty</th><th>Jumlah</th></tr>
 
-<table border="1" width="100%">
+<?php foreach ($data['items'] as $item): ?>
 <tr>
-    <th>Produk</th>
-    <th>Saiz</th>
-    <th>Kuantiti</th>
-    <th>Jumlah</th>
-</tr>
-
-<?php foreach ($inv['items'] as $item): ?>
-<tr>
-    <td><?= $item['nama_produk'] ?></td>
-    <td><?= $item['saiz'] ?></td>
-    <td><?= $item['kuantiti'] ?></td>
-    <td>RM <?= number_format($item['jumlah'],2) ?></td>
+<td><?= $item['nama'] ?></td>
+<td><?= $item['qty'] ?></td>
+<td><?= $item['jumlah'] ?></td>
 </tr>
 <?php endforeach; ?>
 
-<tr>
-    <td colspan="3">Total</td>
-    <td>RM <?= number_format($inv['jumlah'],2) ?></td>
-</tr>
 </table>
 
-<button onclick="window.print()">Print</button>
+<h2>Total: RM <?= $data['total'] ?></h2>
+
+<?php include 'includes/footer.php'; ?>
